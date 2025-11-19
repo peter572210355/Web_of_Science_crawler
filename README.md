@@ -29,15 +29,18 @@ Selenium：4.38.0
 需先手動下載ChromeDriver不然會超卡
 
 查看 Chrome 版本
-搜尋 chrome://version/
-手動手動下載 ChromeDriver：
+搜尋 chrome://version/ 
+確認版本後手動下載 ChromeDriver： 
+
 https://googlechromelabs.github.io/chrome-for-testing/
+
 ChromeDriver.py測試 可執行代表沒問題
 
-接著使用wos.crawler.py
-將需要抓取網址複製BASE_URL 輸入你要抓取筆數TOTAL_N 即可執行
 
-test.py為確認筆數是抓正確
+接著使用wos.crawler.py
+只需更改網址BASE_URL 和 抓取筆數TOTAL_N 即可執行
+
+test.py為確認筆數是否抓正確
 
 #小BUG
 
