@@ -1,3 +1,68 @@
+# Web-of-Science-Crawler
+
+Automated batch export of Web of Science (WOS) (URL: https://www.webofscience.com/wos/woscc/smart-search
+) literature data using Selenium Bot.
+
+This project uses Python + Selenium to batch download Web of Science Excel files through browser automation.
+Since WOS can export up to 1000 records at a time, this program automatically performs multiple batch exports, detects download completion, renames the files, and continues until all records are downloaded.
+
+# Features
+
+Automatically fills in the start and end records (records from / to)
+
+Automatically clicks Export → Excel → Records from: → Record Content: Export → button
+
+Automatically waits for the download to complete (detects .crdownload)
+
+Downloaded record ranges are used as filenames (to avoid overwrite or conflicts)
+Example: If 5000 records are downloaded, filenames will be 1_1000, 1001_2000…
+
+Automatically retries on failure, prevents Timeout / StaleElement
+
+Can run for a long time without manual intervention
+
+Supports large-scale data (> 600,000 records) batch export
+
+# Versions Used
+
+Python: 3.14.0
+Selenium: 4.38.0
+
+# Usage
+
+You must manually download ChromeDriver first, otherwise the process will be extremely slow.
+
+Check Chrome version
+Search chrome://version/
+After confirming the version, manually download ChromeDriver:
+
+https://googlechromelabs.github.io/chrome-for-testing/
+
+Run ChromeDriver.py to test. If it runs, then it is correct.
+
+Then use wos.crawler.py
+You only need to modify BASE_URL and TOTAL_N (total records to fetch) to execute.
+
+test.py is used to confirm whether the number of records is captured correctly.
+
+Note: Any part containing a path location must be modified to your own path.
+
+# Small BUG
+
+Sometimes a filename is not renamed because the program determines the new file based on the difference before and after download;
+if the download completes too fast, the new file already exists when taking the “before” snapshot, making the program unable to detect it, so the filename will not be changed.
+
+It is recommended to keep the batch size under 50,000.
+
+# Note
+
+This is specifically for automating:
+Export → Excel → Records from: 1 to TOTAL_N → Record Content: Full Record → Export button
+
+(Example URL: https://www.webofscience.com/wos/woscc/summary/e5e64c73-cc6f-4d8f-9f54-37d62495a2f3-018a0b4503/relevance/1
+)
+If there are other similar operations, you may modify wos.crawler.py accordingly.
+
 # Web-of-Science-爬蟲 
 
 自動化批次匯出 Web of Science (WOS) (網址:https://www.webofscience.com/wos/woscc/smart-search) 文獻資料的 Selenium Bot
@@ -46,11 +111,13 @@ test.py為確認筆數是否抓正確
 
 #小BUG
 
-少數時候檔名沒被改到，是因為程式是靠「下載前後的檔案差異」來判斷新檔案；如果下載完成得太快，導致在拍「之前的列表」時，新檔案其實已經存在，就偵測不到變化，檔名就不會被改。
+少數時候檔名沒被改到，是因為程式是靠「下載前後的檔案差異」來判斷新檔案；如果下載完成得太快，導致在載「之前的列表」時，新檔案其實已經存在，就偵測不到變化，檔名就不會被改。
+
+建議載入筆數五萬內。
 
 #注意
 
-此為針對自動點擊 Export → Excel → Records from: → Record Content: →  Export 按鈕
+此為針對自動點擊 Export → Excel → Records from: 1 to TOTAL_N → Record Content: Full Record →  Export 按鈕
 
 (範例網址:https://www.webofscience.com/wos/woscc/summary/e5e64c73-cc6f-4d8f-9f54-37d62495a2f3-018a0b4503/relevance/1)
 如有其他類似操作可拿wos.crawler.py做更改
