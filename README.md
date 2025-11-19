@@ -9,7 +9,7 @@
 
 自動填入起訖記錄 (records from / to)
 
-自動點擊 Export → Excel → Export 按鈕
+自動點擊 Export → Excel → Records from: → Record Content: Export → 按鈕
 
 自動等待下載完成（偵測 .crdownload）
 
@@ -47,6 +47,11 @@ test.py為確認筆數是否抓正確
 #小BUG
 
 少數時候檔名沒被改到，是因為程式是靠「下載前後的檔案差異」來判斷新檔案；如果下載完成得太快，導致在拍「之前的列表」時，新檔案其實已經存在，就偵測不到變化，檔名就不會被改。
+
+#注意
+此為針對自動點擊 Export → Excel → Records from: → Record Content: →  Export 按鈕
+(範例網址:https://www.webofscience.com/wos/woscc/summary/e5e64c73-cc6f-4d8f-9f54-37d62495a2f3-018a0b4503/relevance/1)
+如有其他類似操作可拿wos.crawler.py做更改
 
 
 
