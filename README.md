@@ -1,6 +1,6 @@
 # Web-of-Science-爬蟲 
 
-自動化批次匯出 Web of Science (WOS) 文獻資料的 Selenium Bot
+自動化批次匯出 Web of Science (WOS) (網址:https://www.webofscience.com/wos/woscc/smart-search) 文獻資料的 Selenium Bot
 
 本專案使用 Python + Selenium，透過瀏覽器自動化方式批次下載 Web of Science 的 Excel 文獻檔案。
 由於 WOS 每次最多只能匯出 1000 筆，因此本程式會自動執行多輪分批匯出、偵測下載完成、重新命名檔案並持續進行直到所有資料都下載完成。
